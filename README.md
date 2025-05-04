@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧪 Pokedex Full-Stack App
 
-## Getting Started
+A full-stack Pokémon application built using **Next.js (App Router)**, **TypeScript**, **tRPC**, **Prisma + SQL**, **Material UI**, and **React Query**.  
+This is a 3-part assignment that demonstrates database integration, tRPC API handling, and UI rendering with filters.
 
-First, run the development server:
+---
+
+## ⚙️ Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **UI Library:** Material UI
+- **ORM:** Prisma
+- **Database:** SQL (Planetscale-ready)
+- **API Layer:** tRPC
+- **Data Fetching:** React Query
+
+---
+
+## 🚀 Features
+
+### ✅ Part 1 – Single Pokémon Query
+
+- SQL database seeded with mock Pokémon data.
+- Query a Pokémon by name using a tRPC route:  
+  `getPokemon("Bulbasaur")`
+- Display the result using a reusable `<PokemonRow />` component.
+
+### ✅ Part 2 – Multiple Pokémon Query
+
+- Accept an array of Pokémon names like `["Bulbasaur", "Charmander"]`.
+- Fetch and render all data using `<PokedexTable />`.
+
+### ✅ Part 3 – Filter by Type
+
+- Component `<PokemonTypeSelection />` allows selecting a Pokémon type.
+- `<FilterablePokedexTable />` renders the filtered result based on the selected type.
+- Data fetched dynamically via type-based tRPC route.
+
+---
+
+## 🧑‍💻 Getting Started
 
 ```bash
+git clone https://github.com/Mayur7862/pokedex-assignment.git
+cd pokedex-assignment
+npm install
+npx prisma generate
+npx prisma migrate dev
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🧪 Example Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+const pokemon = getPokemon("Bulbasaur");
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+const pokemonArray = getPokemon(["Bulbasaur", "Charmander"]);
 
-## Learn More
+const fireTypePokemon = getPokemonByType("fire");
 
-To learn more about Next.js, take a look at the following resources:
+📂 Folder Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+src/
+├── app/                      # Next.js App Router structure
+├── components/
+│   ├── PokemonRow.tsx
+│   ├── PokedexTable.tsx
+│   └── FilterablePokedexTable.tsx
+├── server/
+│   ├── db/                   # Prisma schema and config
+│   └── routers/              # All tRPC routers
+├── lib/
+└── types/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📌 To-Do
 
-## Deploy on Vercel
+ Deployment – Not deployed yet (Planned: Vercel + Planetscale)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ Error Handling – Some edge cases may cause silent failures
