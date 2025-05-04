@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // You can change this to PostgreSQL/MySQL if needed
+  url      = "file:./dev.db"
+}
+
+model Pokemon {
+  id     Int    @id @default(autoincrement())
+  name   String
+  image  String
+  type   String
+}
